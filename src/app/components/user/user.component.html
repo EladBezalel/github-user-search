@@ -1,0 +1,22 @@
+<mat-card fxLayout="row" fxLayoutAlign="space-between" [@item]>
+  <mat-card-header>
+    <img mat-card-avatar class="avatar" [src]="user.avatar_url"/>
+    <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+      <a [href]="user.html_url">
+        <span class="name">{{user.name}}</span>        
+      </a>
+      <a [href]="user.html_url">
+        <span class="username">@{{user.login}}</span>
+      </a>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="user.location">
+      <mat-icon>location_on</mat-icon>
+      <span>{{user.location}}</span>
+    </mat-card-subtitle>
+    <mat-card-subtitle *ngIf="user.bio">{{user.bio}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content fxLayout="row">
+    <app-number title="Followers" [value]="user.followers"></app-number>
+    <app-number title="Following" [value]="user.following"></app-number>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">Github User Search</mat-toolbar>
+
+<div fxLayout="column" fxFlex>
+    <app-search placeholder="Search Github users">
+    </app-search>
+    <div *ngIf="(facade.users$ | async) as users" fxLayout="column" fxFlex>
+      <mat-grid-list [cols]="cols$ | async" rowHeight="4:1" gutterSize="16px" fxFlex>
+        <mat-grid-tile *ngFor="let user of users">
+          <app-user [user]="user"></app-user>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-paginator *ngIf="(facade.pagination$ | async) as pagination"
+        [length]="facade.totalUsers$ | async"
+        [pageSize]="pagination.pageSize"
+        [pageSizeOptions]="pagination.pageSizeOptions"
+        (page)="facade.goToPage($event)">
+      </mat-paginator>
+    </div>
+</div>
